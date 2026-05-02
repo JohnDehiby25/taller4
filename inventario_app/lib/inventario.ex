@@ -1,15 +1,14 @@
-defmodule Inventario do
-
+defmodule InventarioApp.Inventario do
   # ================= CRUD =================
 
   def agregar(mapa, codigo, nombre, precio, cantidad) do
     if Map.has_key?(mapa, codigo) do
       {:error, "Código ya existe"}
     else
-      case Producto.crear(codigo, nombre, precio, cantidad) do
+      case InventarioApp.Producto.crear(codigo, nombre, precio, cantidad) do
         {:ok, producto} ->
           nuevo = Map.put(mapa, codigo, producto)
-          ArchivoJSON.guardar(nuevo)
+          InventarioApp.ArchivoJSON.guardar(nuevo)
           {:ok, nuevo}
 
         error -> error
@@ -20,7 +19,7 @@ defmodule Inventario do
   def eliminar(mapa, codigo) do
     if Map.has_key?(mapa, codigo) do
       nuevo = Map.delete(mapa, codigo)
-      ArchivoJSON.guardar(nuevo)
+      InventarioApp.ArchivoJSON.guardar(nuevo)
       {:ok, nuevo}
     else
       {:error, "Producto no encontrado"}
@@ -29,10 +28,10 @@ defmodule Inventario do
 
   def actualizar(mapa, codigo, nombre, precio, cantidad) do
     if Map.has_key?(mapa, codigo) do
-      case Producto.crear(codigo, nombre, precio, cantidad) do
+      case InventarioApp.Producto.crear(codigo, nombre, precio, cantidad) do
         {:ok, producto} ->
           nuevo = Map.put(mapa, codigo, producto)
-          ArchivoJSON.guardar(nuevo)
+          InventarioApp.ArchivoJSON.guardar(nuevo)
           {:ok, nuevo}
 
         error -> error
@@ -65,7 +64,7 @@ defmodule Inventario do
     nombre
     |> String.downcase()
     |> String.graphemes()
-    |> Enum.count(&(&1 in ["a","e","i","o","u"]))
+    |> Enum.count(&(&1 in ["a", "e", "i", "o", "u"]))
   end
 
   # 2. Mismo inicio y fin
