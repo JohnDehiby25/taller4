@@ -17,7 +17,11 @@ defmodule Socio do
   end
 
   def desinscribir_clase(%__MODULE__{clases: clases} = socio, clase) do
-    {:ok, %{socio | clases: List.delete(clases, clase)}}
+    if clase in clases do
+      {:ok, %{socio | clases: List.delete(clases, clase)}}
+    else
+      {:error, :no_inscrito}
+    end
   end
 
   def tiene_clase?(%__MODULE__{clases: clases}, clase) do

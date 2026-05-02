@@ -37,6 +37,46 @@ defmodule Gimnasio do
     end
   end
 
+  def inscribir_clase(socios, cedula, clase) do
+    case Map.get(socios, cedula) do
+      nil ->
+        {:error, :no_encontrado}
 
+      socio ->
+        case Socio.inscribir_clase(socio, clase) do
+          {:ok, actualizado} ->
+            nuevos = Map.put(socios, cedula, actualizado)
+            guardar_datos(nuevos)
+            {:ok, nuevos}
+
+          error -> error
+        end
+    end
+  end
+
+  def desinscribir_clase(socios, cedula, clase) do
+    case Map.get(socios, cedula) do
+      nil ->
+        {:error, :no_encontrado}
+        socio ->
+          case Socio.desinscribir_clase(socio, clase) do
+            {:ok, actualizado} ->
+            nuevos = Map.put(socios, cedula, actualizado)
+            guardar_datos(nuevos)
+            {:ok, nuevos}
+        error ->
+          error
+      end
+  end
+end
+
+  def obtener_socio(socios, cedula) do
+    case Map.get(socios, cedula) do
+      nil -> {:error, :no_encontrado}
+      socio -> {:ok, socio}
+    end
+  end
+
+  def listar_socios(socios), do: Map.values(socios)
 
 end
