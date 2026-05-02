@@ -6,7 +6,7 @@ defmodule Gimnasio do
           {:error, :cedula_duplicada}
         else
           nuevos = Map.put(socios, cedula, socio)
-          guardar_datos(nuevos)
+          GestionArchivos.guardar_datos(nuevos)
           {:ok, nuevos}
         end
 
@@ -22,7 +22,7 @@ defmodule Gimnasio do
       socio ->
         actualizado = %{socio | nombre: nombre, edad: edad}
         nuevos = Map.put(socios, cedula, actualizado)
-        guardar_datos(nuevos)
+        GestionArchivos.guardar_datos(nuevos)
         {:ok, nuevos}
     end
   end
@@ -30,7 +30,7 @@ defmodule Gimnasio do
   def eliminar_socio(socios, cedula) do
     if Map.has_key?(socios, cedula) do
       nuevos = Map.delete(socios, cedula)
-      guardar_datos(nuevos)
+      GestionArchivos.guardar_datos(nuevos)
       {:ok, nuevos}
     else
       {:error, :no_encontrado}
@@ -46,7 +46,7 @@ defmodule Gimnasio do
         case Socio.inscribir_clase(socio, clase) do
           {:ok, actualizado} ->
             nuevos = Map.put(socios, cedula, actualizado)
-            guardar_datos(nuevos)
+            GestionArchivos.guardar_datos(nuevos)
             {:ok, nuevos}
 
           error -> error
@@ -58,17 +58,19 @@ defmodule Gimnasio do
     case Map.get(socios, cedula) do
       nil ->
         {:error, :no_encontrado}
-        socio ->
-          case Socio.desinscribir_clase(socio, clase) do
-            {:ok, actualizado} ->
+
+      socio ->
+        case Socio.desinscribir_clase(socio, clase) do
+          {:ok, actualizado} ->
             nuevos = Map.put(socios, cedula, actualizado)
-            guardar_datos(nuevos)
+            GestionArchivos.guardar_datos(nuevos)
             {:ok, nuevos}
-        error ->
-          error
-      end
+
+          error ->
+            error
+        end
+    end
   end
-end
 
   def obtener_socio(socios, cedula) do
     case Map.get(socios, cedula) do
@@ -77,6 +79,26 @@ end
     end
   end
 
-  def listar_socios(socios), do: Map.values(socios)
+  def socios_por_clase(socios, clase) do
+    resultado =
+      socios
+      |> Map.values()
+      |> Enum.filter(fn socio -> Socio.tiene_clase?(socio, clase) end)
+
+    {:ok, resultado}
+  end
+
+  def clases_de_socio(socios, cedula) do
+    case Map.get(socios, cedula) do
+      nil ->
+        {:error, :no_encontrado}
+
+      socio ->
+        {:ok, socio.clases}
+    end
+  end
+  def listar_socios(socios) do
+    {:ok, Map.values(socios)}
+  end
 
 end
