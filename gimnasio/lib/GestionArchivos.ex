@@ -22,7 +22,7 @@ defmodule GestionArchivos do
       end)
 
     {:error, _} ->
-      File.write("socios.csv", "")
+      File.write!("socios.csv", "")
       %{}
   end
 end
@@ -36,6 +36,9 @@ def guardar_datos(socios) do
 
   contenido = CsvParser.dump_to_iodata(filas)
 
-  File.write("socios.csv", contenido)
+  case File.write("socios.csv", contenido) do
+  :ok -> :ok
+  {:error, _} -> {:error, :no_se_pudo_guardar}
+  end
 end
 end

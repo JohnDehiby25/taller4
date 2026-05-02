@@ -1,21 +1,23 @@
 # Gimnasio
+# Sistema de Gestión de Socios de Gimnasio
 
-**TODO: Add description**
+## Descripción
+Este proyecto permite gestionar los socios de un gimnasio y las clases en las que están inscritos. Se pueden realizar operaciones como crear, eliminar, buscar socios, así como gestionar sus clases.
 
-## Installation
+## Funcionalidades
+- Crear socio
+- Eliminar socio
+- Inscribir a una clase
+- Desinscribir de una clase
+- Buscar socio por cédula
+- Listar todos los socios
+- Listar socios por clase
+- Ver clases de un socio
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `gimnasio` to your list of dependencies in `mix.exs`:
+## Tecnologías usadas
+- Elixir
+- Mix
+- NimbleCSV
 
-```elixir
-def deps do
-  [
-    {:gimnasio, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/gimnasio>.
-
+## Persistencia
+Los datos se almacenan en un archivo `socios.csv`.
