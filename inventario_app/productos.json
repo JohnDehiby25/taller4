@@ -1,8 +1,26 @@
 [
   {
-    "codigo": "1234",
-    "nombre": "arroz",
-    "precio": 3.0e3,
+    "codigo": "P002",
+    "nombre": "Arroz",
+    "precio": 8000,
+    "cantidad": 5
+  },
+  {
+    "codigo": "P003",
+    "nombre": "Azucar",
+    "precio": 120000,
     "cantidad": 2
+  },
+  {
+    "codigo": "P004",
+    "nombre": "Agua",
+    "precio": 1200,
+    "cantidad": 30
+  },
+  {
+    "codigo": "P005",
+    "nombre": "Sal",
+    "precio": 75000,
+    "cantidad": 8
   }
 ]

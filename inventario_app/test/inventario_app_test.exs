@@ -172,7 +172,7 @@ defmodule InventarioApp.InventarioTest do
 
   describe "mismo_inicio_fin/1" do
     test "filtra productos cuyo nombre empieza y termina con la misma letra" do
-      {:ok, p1} = Producto.crear("M001", "Anan",  1000, 1)   # a...a ✓
+      {:ok, p1} = Producto.crear("M001", "Ana",  1000, 1)  # a...a ✓
       {:ok, p2} = Producto.crear("M002", "Cafe",  2000, 1)   # c...e ✗
       {:ok, p3} = Producto.crear("M003", "Elixire", 3000, 1) # e...e ✓
       mapa = %{"M001" => p1, "M002" => p2, "M003" => p3}
