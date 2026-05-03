@@ -21,3 +21,6 @@ Este proyecto permite gestionar los socios de un gimnasio y las clases en las qu
 
 ## Persistencia
 Los datos se almacenan en un archivo `socios.csv`.
+
+## Nota Uso de IA
+Para este proyecto se usó IA como apoyo para entender mejor Elixir, organizar el código y solucionar algunos errores. Fue útil para avanzar más rápido, pero siempre revisando y entendiendo lo que se hacía. La idea no es que la IA haga todo, sino usarla como una guía mientras uno aprende.

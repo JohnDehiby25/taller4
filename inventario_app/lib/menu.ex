@@ -66,6 +66,7 @@ defmodule InventarioApp.Menu do
 
     case InventarioApp.Inventario.agregar(mapa, codigo, nombre, precio, cantidad) do
       {:ok, nuevo} ->
+        InventarioApp.ArchivoJSON.guardar(nuevo)
         IO.puts("Producto agregado")
         loop(nuevo)
 
@@ -92,6 +93,7 @@ defmodule InventarioApp.Menu do
 
     case InventarioApp.Inventario.actualizar(mapa, codigo, nombre, precio, cantidad) do
       {:ok, nuevo} ->
+        InventarioApp.ArchivoJSON.guardar(nuevo)
         IO.puts("Producto actualizado")
         loop(nuevo)
 
@@ -106,6 +108,7 @@ defmodule InventarioApp.Menu do
 
     case InventarioApp.Inventario.eliminar(mapa, codigo) do
       {:ok, nuevo} ->
+        InventarioApp.ArchivoJSON.guardar(nuevo)
         IO.puts("Producto eliminado")
         loop(nuevo)
 

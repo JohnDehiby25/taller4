@@ -1,5 +1,11 @@
 [
   {
+    "codigo": "P001",
+    "nombre": "Galletas",
+    "precio": 20000,
+    "cantidad": 1
+  },
+  {
     "codigo": "P002",
     "nombre": "Arroz",
     "precio": 8000,
