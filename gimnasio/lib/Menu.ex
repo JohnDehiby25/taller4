@@ -1,11 +1,4 @@
 defmodule Menu do
-  use Application
-
-  def start(_type, _args) do
-    iniciar()
-    {:ok, self()}
-  end
-
   def iniciar do
     socios = GestionArchivos.cargar_datos()
     loop(socios)
