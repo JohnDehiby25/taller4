@@ -1,5 +1,6 @@
 defmodule Gimnasio do
   def agregar_socio(socios, cedula, nombre, edad) do
+    cedula = String.trim(cedula)
     case Socio.nuevo(nombre, edad) do
       {:ok, socio} ->
         if Map.has_key?(socios, cedula) do
